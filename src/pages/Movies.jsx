@@ -1,6 +1,9 @@
 import swAPI from '../services/swAPI'
 import { useEffect, useState } from 'react'
-
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 
 
@@ -22,18 +25,29 @@ const Movies = () => {
 
     return (
         <>
-            {movies &&
-                movies.results.map((movies) => (
+            <Row xs={1} md={3} className="g-4">
+                {movies &&
+                    movies.results.map((movies) => (
 
-                    <div>
-                        <h3>{movies.title}</h3>
-                        <p>Episode id: {movies.episode_id}</p>
-                    </div>
+                        <Col>
+                            <Card style={{ width: '18rem' }}>
+                                <Card.Header as="h5">{movies.title}</Card.Header>
+                                <Card.Body>
+                                    <Card.Title>Episode id: {movies.episode_id} <i>{movies.release_date}</i></Card.Title>
+                                    <Card.Text>
+                                        {movies.opening_crawl}</Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+
+
+                        </Col>
 
 
 
-                ))}
 
+                    ))}
+            </Row>
         </>
     );
 }

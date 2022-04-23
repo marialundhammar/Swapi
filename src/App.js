@@ -2,6 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
 import Movies from './pages/Movies'
+import People from './pages/People'
 import Container from 'react-bootstrap/Container'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
@@ -22,6 +23,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/movies" element={<Movies />} />
+            <Route path="/people" element={<People />} />
           </Routes>
 
         </Container>
