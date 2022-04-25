@@ -6,26 +6,25 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 
 const People = () => {
 
     const [people, setPeople] = useState("")
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(1)
 
     const getPeople = async () => {
-        const data = await swAPI.getPeople()
+        const data = await swAPI.getPeople(page)
         setPeople(data)
-        console.log(data.results)
+        console.log(data.next)
+
     }
 
     // Get movies from api when component is first mounted
     useEffect(() => {
-        getPeople(page)
+        getPeople()
     }, [page])
-
-
-
 
 
     return (
@@ -33,8 +32,8 @@ const People = () => {
         <>
             <Row xs={1} md={3} className="g-4">
                 {people &&
-                    people.results.map((people, index) => (
-                        <div key={index}>
+                    people.results.map((people, i) => (
+                        <div key={i}>
                             <Col>
                                 <Card style={{ width: '18rem' }}>
                                     <Card.Header as="h5">{people.name}</Card.Header>
@@ -46,28 +45,23 @@ const People = () => {
 
 
                     ))}
-
-
-
-
             </Row>
 
-            <div className="d-flex justify-content-between align-items-center mt-4">
-                <div className="prev">
-                    <Button
-                        disabled={page === 0}
-                        onClick={() => setPage(prevValue => prevValue - 1)}
-
-                    >Previous Page</Button>
-                </div>
-                <div className="page">{page + 1}</div>
-
-                <div className="next">
-                    <Button
-                        /*  disabled={page + 1 >= (people.next !== null)} */
-
-                        onClick={() => setPage(prevValue => prevValue + 1)}>Next Page</Button>
-                </div>
+            <div className='d-flex justify-content-between align-items-center p-4'>
+                <button
+                    onClick={() => setPage(prevValue => prevValue - 1)}
+                    type='primary'
+                    className='btn btn-secondary'>
+                    Prev
+            </button>
+                <p>{page}</p>
+                <button
+                    onClick={() => setPage(prevValue => prevValue + 1)}
+                    type='primary'
+                    className='btn btn-secondary'
+                >
+                    Next
+            </button>
             </div>
 
         </>
