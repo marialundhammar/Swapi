@@ -2,13 +2,14 @@
 import swAPI from '../services/swAPI'
 import { useEffect, useState } from 'react'
 import Card from 'react-bootstrap/Card'
-
+import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 const People = () => {
 
     const [people, setPeople] = useState("")
+    const [page, setPage] = useState(0)
 
     const getPeople = async () => {
         const data = await swAPI.getPeople()
@@ -18,8 +19,11 @@ const People = () => {
 
     // Get movies from api when component is first mounted
     useEffect(() => {
-        getPeople()
-    }, [])
+        getPeople(page)
+    }, [page])
+
+
+
 
 
     return (
@@ -27,22 +31,41 @@ const People = () => {
         <>
             <Row xs={1} md={3} className="g-4">
                 {people &&
-                    people.results.map((people) => (
+                    people.results.map((people, index) => (
+                        <div key={index}>
+                            <Col>
+                                <Card style={{ width: '18rem' }}>
+                                    <Card.Header as="h5">{people.name}</Card.Header>
 
-                        <Col>
-                            <Card style={{ width: '18rem' }}>
-                                <Card.Header as="h5">{people.name}</Card.Header>
-
-                            </Card>
-
-
-                        </Col>
-
-
+                                </Card>
+                            </Col>
+                        </div>
 
 
                     ))}
+
+
+
+
             </Row>
+
+            <div className="d-flex justify-content-between align-items-center mt-4">
+                <div className="prev">
+                    <Button
+                        disabled={page === 0}
+                        onClick={() => setPage(prevValue => prevValue - 1)}
+
+                    >Previous Page</Button>
+                </div>
+                <div className="page">{page + 1}</div>
+
+                <div className="next">
+                    <Button
+                        /*  disabled={page + 1 >= (people.next !== null)} */
+                        onClick={() => setPage(prevValue => prevValue + 1)}>Next Page</Button>
+                </div>
+            </div>
+
         </>
 
 
