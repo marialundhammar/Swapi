@@ -48,20 +48,20 @@ const People = () => {
             </Row>
 
             <div className='d-flex justify-content-between align-items-center p-4'>
-                <button
+                <Button
                     onClick={() => setPage(prevValue => prevValue - 1)}
-                    type='primary'
-                    className='btn btn-secondary'>
+
+                    variant="primary">
                     Prev
-            </button>
+            </Button>
                 <p>{page}</p>
-                <button
+                <Button
                     onClick={() => setPage(prevValue => prevValue + 1)}
-                    type='primary'
-                    className='btn btn-secondary'
+
+                    variant="primary"
                 >
                     Next
-            </button>
+            </Button>
             </div>
 
         </>
