@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { Link } from 'react-router-dom'
 
 
 
@@ -27,7 +28,7 @@ const Movies = () => {
         <>
             <Row xs={1} md={3} className="g-4">
                 {movies &&
-                    movies.results.map((movies) => (
+                    movies.results.map((movies, index) => (
 
                         <Col>
                             <Card style={{ width: '18rem' }}>
@@ -35,8 +36,9 @@ const Movies = () => {
                                 <Card.Body>
                                     <Card.Title>Episode id: {movies.episode_id} <i>{movies.release_date}</i></Card.Title>
                                     <Card.Text>
-                                        {movies.opening_crawl}</Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
+                                        {movies.url}
+                                    </Card.Text>
+                                    <Button variant="primary" as={Link} to={`/movies/${swAPI.getIdFromUrl(movies.url)}`}>Read more</Button>
                                 </Card.Body>
                             </Card>
 

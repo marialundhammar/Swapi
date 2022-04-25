@@ -10,7 +10,7 @@ const Movie = () => {
     const getMovie = async (id) => {
         const data = await swAPI.getMovie(id)
         setMovie(data)
-        console.log(data.results)
+        console.log(data)
     }
 
     // Get movies from api when component is first mounted
@@ -23,10 +23,7 @@ const Movie = () => {
 
         <div>
             {movie && (
-
                 <h2>{movie.title}</h2>
-
-
             )}
 
         </div>

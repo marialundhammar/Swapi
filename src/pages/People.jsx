@@ -5,6 +5,8 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { Link } from 'react-router-dom'
+
 
 const People = () => {
 
@@ -36,6 +38,7 @@ const People = () => {
                             <Col>
                                 <Card style={{ width: '18rem' }}>
                                     <Card.Header as="h5">{people.name}</Card.Header>
+                                    <Button variant="primary" as={Link} to={`/people/${swAPI.getIdFromUrl(people.url)}`}>Read more</Button>
 
                                 </Card>
                             </Col>
@@ -62,6 +65,7 @@ const People = () => {
                 <div className="next">
                     <Button
                         /*  disabled={page + 1 >= (people.next !== null)} */
+
                         onClick={() => setPage(prevValue => prevValue + 1)}>Next Page</Button>
                 </div>
             </div>
