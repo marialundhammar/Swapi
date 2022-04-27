@@ -1,4 +1,3 @@
-
 import swAPI from '../services/swAPI'
 import { useEffect, useState } from 'react'
 import Card from 'react-bootstrap/Card'
@@ -6,7 +5,6 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
-import { useSearchParams } from 'react-router-dom'
 
 
 const People = () => {
@@ -14,16 +12,17 @@ const People = () => {
     const [people, setPeople] = useState("")
     const [page, setPage] = useState(1)
 
+
     const getPeople = async () => {
         const data = await swAPI.getPeople(page)
         setPeople(data)
-        console.log(data.next)
 
     }
 
+
     // Get movies from api when component is first mounted
     useEffect(() => {
-        getPeople()
+        getPeople();
     }, [page])
 
 
@@ -36,9 +35,10 @@ const People = () => {
                         <div key={i}>
                             <Col>
                                 <Card style={{ width: '18rem' }}>
-                                    <Card.Header as="h5">{people.name}</Card.Header>
-                                    <Button variant="primary" as={Link} to={`/people/${swAPI.getIdFromUrl(people.url)}`}>Read more</Button>
-
+                                    <Card.Body>
+                                        <Card.Header as="h5">{people.name}</Card.Header>
+                                        <Button variant="primary" as={Link} to={`/people/${swAPI.getIdFromUrl(people.url)}`}>Read more</Button>
+                                    </Card.Body>
                                 </Card>
                             </Col>
                         </div>
@@ -50,17 +50,16 @@ const People = () => {
             <div className='d-flex justify-content-between align-items-center p-4'>
                 <Button
                     onClick={() => setPage(prevValue => prevValue - 1)}
-
+                    disabled={page === 1}
                     variant="primary">
                     Prev
             </Button>
                 <p>{page}</p>
                 <Button
+                    disabled={people.next === null}
                     onClick={() => setPage(prevValue => prevValue + 1)}
-
                     variant="primary"
-                >
-                    Next
+                > Next
             </Button>
             </div>
 

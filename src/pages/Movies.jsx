@@ -36,7 +36,7 @@ const Movies = () => {
                                 <Card.Body>
                                     <Card.Title>Episode id: {movies.episode_id} <i>{movies.release_date}</i></Card.Title>
                                     <Card.Text>
-                                        {movies.url}
+
                                     </Card.Text>
                                     <Button variant="primary" as={Link} to={`/movies/${swAPI.getIdFromUrl(movies.url)}`}>Read more</Button>
                                 </Card.Body>
