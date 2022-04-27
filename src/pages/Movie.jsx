@@ -2,6 +2,7 @@ import swAPI from '../services/swAPI'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 
 const Movie = () => {
@@ -25,25 +26,26 @@ const Movie = () => {
 
 
     return (
-
-        <div>
-
-            <h2>{movie.title}</h2>
-
+        <>
             <div>
 
-                {persons &&
-                    persons.map(person => (
-                        <Link to={`/people/${swAPI.getIdFromUrl(person)}`}>
-                            <li>Character {swAPI.getIdFromUrl(person)}</li>
-                        </Link>
-                    ))}
+                <h2>{movie.title}</h2>
 
+                <div>
+
+                    {persons &&
+                        persons.map(person => (
+                            <Link to={`/people/${swAPI.getIdFromUrl(person)}`}>
+                                <li>Character {swAPI.getIdFromUrl(person)}</li>
+                            </Link>
+                        ))}
+
+
+                </div>
 
             </div>
-
-        </div>
-
+            <Button variant="primary" as={Link} to={`/movies`}>Back</Button>
+        </>
 
     );
 }

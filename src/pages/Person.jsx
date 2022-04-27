@@ -54,7 +54,9 @@ const Person = () => {
             </div>
 
             <div className='d-flex justify-content-start align-items-center p-4'>
-                <Button > Back </Button>
+
+
+                <Button variant="primary" as={Link} to={`/people`}>Back</Button>
             </div>
 
 
