@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 
 const Movie = () => {
@@ -32,6 +33,16 @@ const Movie = () => {
                 <h2>{movie.title}</h2>
 
                 <div>
+
+                    <ListGroup>
+
+                        <ListGroup.Item> Episode: {movie.episode_id}</ListGroup.Item>
+                        <ListGroup.Item> Opening crawl: {movie.opening_crawl}</ListGroup.Item>
+                        <ListGroup.Item> Producer: {movie.producer}</ListGroup.Item>
+
+                        <ListGroup.Item>Release date: <i>{movie.release_date}</i></ListGroup.Item>
+                    </ListGroup>
+
 
                     {persons &&
                         persons.map(person => (
