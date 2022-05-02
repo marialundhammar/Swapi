@@ -12,25 +12,18 @@ const People = () => {
     const [people, setPeople] = useState("")
     const [page, setPage] = useState(1)
 
-
-    const getPeople = async () => {
-        const data = await swAPI.getPeople(page)
-        setPeople(data)
-
-    }
-
-
-    // Get movies from api when component is first mounted
+    // Get movies from api 
     useEffect(() => {
-        getPeople();
-    })
-
-    // Get movies from api when component is first mounted
-    useEffect(() => {
-        if (!people) {
-            return;
+        const getPeople = async () => {
+            const data = await swAPI.getPeople(page)
+            setPeople(data)
         }
-    }, [page, people])
+        getPeople();
+    }, [page])
+
+
+
+
 
     return (
 
