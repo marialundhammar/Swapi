@@ -32,10 +32,13 @@ const getIdFromUrl = (url) => {
     return id
 }
 
-export default {
+const exportFunctions = {
     getMovies,
     getMovie,
     getPeople,
     getIdFromUrl,
-    getPerson
-}
+    getPerson,
+
+};
+
+export default exportFunctions
