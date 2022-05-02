@@ -23,8 +23,14 @@ const People = () => {
     // Get movies from api when component is first mounted
     useEffect(() => {
         getPeople();
-    }, [page])
+    })
 
+    // Get movies from api when component is first mounted
+    useEffect(() => {
+        if (!people) {
+            return;
+        }
+    }, [page, people])
 
     return (
 
