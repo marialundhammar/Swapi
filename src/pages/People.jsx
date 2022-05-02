@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 
 const People = () => {
@@ -12,7 +13,7 @@ const People = () => {
     const [people, setPeople] = useState("")
     const [page, setPage] = useState(1)
 
-    // Get movies from api 
+    // Get people from api 
     useEffect(() => {
         const getPeople = async () => {
             const data = await swAPI.getPeople(page)
@@ -20,10 +21,6 @@ const People = () => {
         }
         getPeople();
     }, [page])
-
-
-
-
 
     return (
 
@@ -36,7 +33,13 @@ const People = () => {
                                 <Card style={{ width: '18rem' }}>
                                     <Card.Body>
                                         <Card.Header as="h5">{people.name}</Card.Header>
-                                        <Button variant="primary" as={Link} to={`/people/${swAPI.getIdFromUrl(people.url)}`}>Read more</Button>
+                                        <ListGroup>
+                                            <ListGroup.Item> Birth year: {people.birth_year}</ListGroup.Item>
+                                            <ListGroup.Item> Eye color: {people.eye_color}</ListGroup.Item>
+                                            <ListGroup.Item>Gener: {people.gender}</ListGroup.Item>
+                                            <Button variant="primary" as={Link} to={`/people/${swAPI.getIdFromUrl(people.url)}`}>Read more</Button>
+                                        </ListGroup>
+
                                     </Card.Body>
                                 </Card>
                             </Col>
